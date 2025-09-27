@@ -9,6 +9,11 @@
         "num_iterations": 50,
         "num_warmups": 10,
         "implementations": {
+            "jax": [
+                {
+                    "order": ["AG_before", "AG_after"]
+                }
+            ],
             "pytorch": [
                 {
                     "backend": ["nccl"],

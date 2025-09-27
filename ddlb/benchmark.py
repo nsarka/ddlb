@@ -33,6 +33,7 @@ def _benchmark_worker_entry(
         ComputeOnlyTPColumnwise as _ComputeOnly,
         FuserTPColumnwise as _Fuser,
         TransformerEngineTPColumnwise as _TE,
+        JAXTPColumnwise as _JAX,
     )
 
     IMPLEMENTATIONS_LOCAL = {
@@ -40,6 +41,7 @@ def _benchmark_worker_entry(
         'compute_only': _ComputeOnly,
         'fuser': _Fuser,
         'transformer_engine': _TE,
+        'jax': _JAX,
     }
 
     # Parse base implementation and options

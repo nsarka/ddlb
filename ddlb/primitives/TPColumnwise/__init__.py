@@ -7,6 +7,7 @@ from .pytorch import PyTorchTPColumnwise
 from .compute_only import ComputeOnlyTPColumnwise
 from .fuser import FuserTPColumnwise
 from .transformer_engine import TransformerEngineTPColumnwise
+from .jax import JAXTPColumnwise
 
 __all__ = [
     'TPColumnwise',
@@ -14,4 +15,5 @@ __all__ = [
     'ComputeOnlyTPColumnwise',
     'FuserTPColumnwise',
     'TransformerEngineTPColumnwise',
+    'JAXTPColumnwise',
 ] 

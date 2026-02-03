@@ -135,7 +135,7 @@ class MatmulRsP2PBasedPipelineFusion(FusionDefinition):
             shape=[d, d, m // d, k // d], contiguity=True, dtype=torch_dtype_to_nvfuser_dtype(self.dtype) # [didx(d), stream(d), m/d, k/d]
         )
         self.B = self.define_tensor(
-            shape=[d, 1, k // d, n], contiguity=True, dtype=torch_dtype_to_nvfuser_dtype(self.dtype) # [didx(d), k/d, n]
+            shape=[d, 1, k // d, n], contiguity=True, dtype=torch_dtype_to_nvfuser_dtype(self.dtype) # [didx(d), 1, k/d, n]
         )
 
         self.C_unreduced = self.ops.matmul(
@@ -144,8 +144,8 @@ class MatmulRsP2PBasedPipelineFusion(FusionDefinition):
 
         self.C = self.ops.sum(self.C_unreduced, 0) # [r(d), didx(d), m/d, n]
 
-        if self.communication_backend == CommunicatorBackend.cuda and not self.offset_stream_indexing_by_rank:
-            self.C.set_memory_type(MemoryType.symmetric)
+        #if self.communication_backend == CommunicatorBackend.cuda and not self.offset_stream_indexing_by_rank:
+        #    self.C.set_memory_type(MemoryType.symmetric)
 
         self.add_output(self.C)
 
